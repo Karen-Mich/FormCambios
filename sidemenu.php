@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="./sidemenu.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<div class="menu-expanded" id="sidemenu">
+<div class="menu-collapsed" id="sidemenu">
     <div id="header">
         <div id="title">
             <span>AB MODEL</span>
