@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +10,13 @@
     <link rel="stylesheet" href="estilo_formulario.css">
     <title>Formulario</title>
 </head>
+
 <body>
     <main>
         <div class="form-content">
-            
+
             <h2>Enviar un Formulario</h2>
-            
+
             <form action="envio.php" method="post" id="formulario" style="display: none;">
                 <input type="hidden" name="id_proyecto" id="id_proyecto">
                 <input type="hidden" name="id_usuario" value="<?php echo $_SESSION['id']; ?>">
@@ -28,14 +30,14 @@
                 <br><label for="coments" class="form-label">DESCRIPCIÓN:</label>
                 <textarea name="coments" id="coments" cols="30" rows="5" class="form-label" required></textarea>
 
-                <br><input type="submit" value="Enviar" class="btn">
+                <br><input type="submit" value="Enviar" class="btn" onclick="return confirmar()">
                 <input type="button" value="Cancelar" class="btn" id="cancelar">
             </form>
 
             <label for="project" class="form-label">PROYECTOS:</label>
             <select class="form-select" id="proyectos" name="proyecto" required>
                 <option selected>Selecciona un proyecto</option>
-                <?php 
+                <?php
                 $db = new DataBase();
                 $con = $db->conectar();
                 $usuario = $_SESSION['id'];
@@ -46,7 +48,7 @@
                             $id = $value["ID_PRO"];
                             $nombre = $value["NOM_PRO"];
                 ?>
-                <option value="<?php echo $id ?>"><?php echo $nombre ?></option>
+                            <option value="<?php echo $id ?>"><?php echo $nombre ?></option>
                 <?php
                         }
                     }
@@ -56,23 +58,32 @@
             </select>
 
             <script>
-    document.getElementById('proyectos').addEventListener('change', function() {
-        var formulario = document.getElementById('formulario');
-        var idProyectoInput = document.getElementById('id_proyecto');
-        idProyectoInput.value = this.value;
-        formulario.style.display = this.value !== 'Selecciona un proyecto' ? 'block' : 'none';
-    });
+                function confirmar() {
+                    var res = confirm("¿Estás seguro de enviar este formulario?, recuerda por política de la empresa no puedes modificar, ni eliminar un formulario enviado a revisión");
+                    if (res === true) {
+                        return true;
+                    }
+                    return false;
+                }
+
+                document.getElementById('proyectos').addEventListener('change', function() {
+                    var formulario = document.getElementById('formulario');
+                    var idProyectoInput = document.getElementById('id_proyecto');
+                    idProyectoInput.value = this.value;
+                    formulario.style.display = this.value !== 'Selecciona un proyecto' ? 'block' : 'none';
+                });
 
 
 
-    document.getElementById('cancelar').addEventListener('click', function() {
-        var formulario = document.getElementById('formulario');
-        formulario.reset(); 
-    });
-</script>
+                document.getElementById('cancelar').addEventListener('click', function() {
+                    var formulario = document.getElementById('formulario');
+                    formulario.reset();
+                });
+            </script>
 
-            
+
         </div>
     </main>
 </body>
+
 </html>
