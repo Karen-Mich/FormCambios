@@ -101,6 +101,11 @@ body {
     width: var(--width);
 }
 
+#sidemenu #menu-items .separator{
+    height: 1px;
+    margin: 15px 0;
+}
+
 #sidemenu #menu-items .item .icon {
     display: inline-block;
 }

@@ -1,9 +1,8 @@
-<?php
-include 'consultas_sidemenu.php';
-?>
+<?php include 'consultas_sidemenu.php'; ?>
 <link rel="stylesheet" href="./sidemenu.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<div class="menu-collapsed" id="sidemenu">
+
+<div class="menu-expanded" id="sidemenu">
     <div id="header">
         <div id="title">
             <span>AB MODEL</span>
@@ -17,7 +16,7 @@ include 'consultas_sidemenu.php';
 
     <div id="profile">
         <div id="photo">
-            <img src="4500791.png">
+            <img src="logo.png">
         </div>
         <div id="name">
             <span>SISTEMA DE <br>PETICIÓN <br> DE CAMBIOS</span>
@@ -26,9 +25,11 @@ include 'consultas_sidemenu.php';
 
     <div id="menu-items">
         <?php
-        if (proyectos()) { ?>
+        if (enableFormulario()) { ?>
+        <div class="item separator"></div>
+
             <div class="item">
-                <a href="">
+                <a href="./formulario.php">
                     <div class="icon">
                         <i class="bi bi-textarea-resize" style="font-size: 1.5rem;"></i>
                     </div>
@@ -42,7 +43,8 @@ include 'consultas_sidemenu.php';
         } ?>
 
         <?php
-        if (proyectos()) { ?>
+        if (enableHistorial()) { ?>
+            <div class="item separator"></div>
             <div class="item">
                 <a href="">
                     <div class="icon">
@@ -58,7 +60,8 @@ include 'consultas_sidemenu.php';
         } ?>
 
         <?php
-        if (proyectos()) { ?>
+        if (enablePeticiones()) { ?>
+            <div class="item separator"></div>
             <div class="item">
                 <a href="">
                     <div class="icon">
@@ -73,8 +76,9 @@ include 'consultas_sidemenu.php';
         <?php
         } ?>
 
+        <div class="item separator"></div>
         <div class="item">
-            <a id="close" href="#">
+            <a id="close" href="#" onclick="salida('closeSession')">
                 <div class="icon">
                     <i class="bi bi-box-arrow-left" style="font-size: 1.5rem;"></i>
                 </div>
@@ -88,10 +92,6 @@ include 'consultas_sidemenu.php';
 
 </div>
 
-<main>
-    <p>HOla</p>
-</main>
-
 <script>
     const btn = document.querySelector('#menu-btn');
     const menu = document.querySelector('#sidemenu');
@@ -101,18 +101,16 @@ include 'consultas_sidemenu.php';
         document.querySelector('body').classList.toggle('body-expanded');
     });
 
-    $(document).ready(function() {
-        $("#close").click(function() {
-            $.ajax({
-                url: "./consultas_sidemenu.php",
-                type: "POST",
-                success: function(response) {
-                    console.log("función PHP:");
-                },
-                error: function(error) {
-                    console.error("Error al ejecutar la función PHP:", error);
-                }
-            });
+    function salida(valor) {
+        $.ajax({
+            url: "./consultas_sidemenu.php",
+            type: "POST",
+            data: {
+                funcion: valor
+            },
+            error: function(error) {
+                console.error("Error al ejecutar la función PHP:", error);
+            }
         });
-    });
+    }
 </script>
