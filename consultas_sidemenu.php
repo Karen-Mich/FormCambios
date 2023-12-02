@@ -8,15 +8,17 @@ function enableFormulario(): bool
     $con = $db->conectar();
 
     $usuario = $_SESSION['id'];
-
-    $sql = $con->prepare("SELECT COUNT(*) FROM proyectos_detalle WHERE ID_USU_DET = :usuario AND ID_ROL_DET=1 OR ID_ROL_DET=2");
-    $sql->bindParam(':usuario', $usuario, PDO::PARAM_INT);
+    
+    $sql = $con->prepare("SELECT COUNT(*) FROM proyectos_detalle WHERE ID_USU_DET = ? AND (ID_ROL_DET = 1 OR ID_ROL_DET = 2)");
+    $sql->bind_param('i', $usuario);
     $sql->execute();
-
-    $rowCount = $sql->fetchColumn();
+    $sql->bind_result($rowCount);
+    $sql->fetch();
+    $sql->close();
 
     return $rowCount > 0;
 }
+
 
 function enableHistorial(): bool
 {
@@ -25,14 +27,16 @@ function enableHistorial(): bool
 
     $usuario = $_SESSION['id'];
 
-    $sql = $con->prepare("SELECT COUNT(*) FROM cambios WHERE ID_USU_CAM = :usuario");
-    $sql->bindParam(':usuario', $usuario, PDO::PARAM_INT);
+    $sql = $con->prepare("SELECT COUNT(*) FROM cambios WHERE ID_USU_CAM = ?");
+    $sql->bind_param('i', $usuario);
     $sql->execute();
-
-    $rowCount = $sql->fetchColumn();
+    $sql->bind_result($rowCount);
+    $sql->fetch();
+    $sql->close();
 
     return $rowCount > 0;
 }
+
 
 function enablePeticiones(): bool
 {
@@ -41,14 +45,16 @@ function enablePeticiones(): bool
 
     $usuario = $_SESSION['id'];
 
-    $sql = $con->prepare("SELECT COUNT(*) FROM proyectos_detalle WHERE ID_USU_DET = :usuario AND ID_ROL_DET=3");
-    $sql->bindParam(':usuario', $usuario, PDO::PARAM_INT);
+    $sql = $con->prepare("SELECT COUNT(*) FROM proyectos_detalle WHERE ID_USU_DET = ? AND ID_ROL_DET = 3");
+    $sql->bind_param('i', $usuario);
     $sql->execute();
-
-    $rowCount = $sql->fetchColumn();
+    $sql->bind_result($rowCount);
+    $sql->fetch();
+    $sql->close();
 
     return $rowCount > 0;
 }
+
 
 function closeSession()
 {
