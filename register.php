@@ -11,6 +11,12 @@
     <form class = "formulario" method="post"> 
         <div class = "contenedor">
             <h1>Crear Cuenta</h1>
+
+            <div class = "input-contenedor">
+            <i class='bx bxs-user-detail'></i>
+<input type = "text" name="cedula" placeholder = "Cédula">
+</div> 
+
     <div class = "input-contenedor">
         <i class='bx bxs-user-circle'></i>
 <input type = "text" name="nombre1" placeholder = "Primer nombre">
