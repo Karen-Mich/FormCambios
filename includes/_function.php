@@ -9,6 +9,7 @@
     $filas=mysqli_fetch_array($resultado);
     
     if (mysqli_num_rows($resultado) > 0) {
+        $_SESSION['id_usuario'] = $filas['ID_USU'];
         header('Location: http://localhost/FormCambios/views/hamilton.php');
         exit(); 
     } else {
