@@ -78,7 +78,6 @@ if(isset($_GET['enviar'])){
                         <th>Nombre del Solicitante</th>
                         <th>Correo del solicitante</th>
                         <th>Nombre del proyecto que se realizo la solicitud</th>
-                        <th>Rol del solicitante en el proyecto</th>
                         <th>Fecha de solicitud</th>
                         <th>razon del cambio</th>
                         
@@ -91,14 +90,12 @@ if(isset($_GET['enviar'])){
 				<?php
 
 $conexion=mysqli_connect("localhost","root","","formulario_cambios");               
-$SQL="SELECT u.nom_usu, u.cor_usu, p.nom_pro, r.nom_rol, c.fec_cam ,c.raz_cam
-FROM usuario as u, proyectos_detalle as d , proyectos as p , roles as r, cambios as c
+$SQL="SELECT distinct u.nom_usu, u.cor_usu, p.nom_pro, c.fec_cam ,c.raz_cam
+FROM usuario as u , proyectos as p, cambios as c
 WHERE u.id_usu = c.id_usu_cam
 AND p.id_pro = c.id_pro_cam
-AND d.id_pro_det = p.id_pro 
-AND d.id_rol_det = r.id_rol
 /*and u.id_usu = '$_SESSION[id_usu]'*/
-and u.id_usu = '1'
+and u.id_usu = '2'
 
 
 $where";
@@ -113,7 +110,6 @@ if($dato -> num_rows >0){
 <td><?php echo $fila['nom_usu']; ?></td>
 <td><?php echo $fila['cor_usu']; ?></td>
 <td><?php echo $fila['nom_pro']; ?></td>
-<td><?php echo $fila['nom_rol']; ?></td>
 <td><?php echo $fila['fec_cam']; ?></td>
 <td><?php echo $fila['raz_cam']; ?></td>
 
