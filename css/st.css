@@ -71,7 +71,7 @@ input:valid ~ label{
 
 .input-contenedor i{
     position: absolute;
-    color: #ff0000;
+    color: #bbbbbb;
     font-size: 1.6rem ;
     top: 19px;
     right: 8px;
