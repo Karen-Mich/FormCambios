@@ -14,7 +14,7 @@
             <section>
                 <div class="contenedor">
                     <div class="formulario">
-                        <form action="_functions.php" method="POST">
+                        <form action="_function.php" method="POST">
                             <h2>Iniciar Sesión</h2>
 
                             <div class="input-contenedor">
