@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect("localhost", "root", "", "formulario_de_cambio");
+$con = mysqli_connect("localhost", "root", "", "formulario_de_cambios");
 
 $usuario = $_SESSION['id_usuario'];
 

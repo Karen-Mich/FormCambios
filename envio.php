@@ -2,7 +2,7 @@
 
 date_default_timezone_set('America/Guayaquil');
 
-$con = mysqli_connect("localhost", "root", "", "formulario_de_cambio");
+$con = mysqli_connect("localhost", "root", "", "formulario_de_cambios");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_proyecto = $_POST['id_proyecto'];
