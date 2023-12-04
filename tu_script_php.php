@@ -2,9 +2,6 @@
 
 $idCam = isset($_POST['idCam']) ? $_POST['idCam'] : null;
 
-// Ahora puedes utilizar $idCam en tus consultas SQL u otras operaciones en PHP
-echo "Valor de idCam recibido en PHP: " . $idCam;
-
 include "conexion.php";
 
 // Consulta SQL para seleccionar todos los datos de la tabla cambios
@@ -26,8 +23,6 @@ if ($result->num_rows > 0) {
     $priCam = $row["PRI_CAM"];
     $estCam = $row["EST_CAM"];
 
-    // Imprimir los valores para verificar
-    echo "ID_CAM: $idCam - ID_PRO_CAM: $idProCam - ID_USU_CAM: $idUsuCam - DES_CAM: $desCam - RAZ_CAM: $razCam - FEC_CAM: $fecCam - PRI_CAM: $priCam - EST_CAM: $estCam" ;
 } else {
     echo "No se encontraron resultados.";
 }
@@ -37,7 +32,7 @@ if($priCam===1){
 }elseif ($priCam == 2) {
     $porcenPri="66%";
 } elseif ($priCam == 3) {
-    $porcenPri="99%";
+    $porcenPri="100%";
 }
 
 
@@ -58,6 +53,10 @@ $subconsulta_proyecto = "SELECT NOM_PRO FROM proyectos WHERE ID_PRO = '$idProCam
                                 $prioridad='Prioridad desconocida';
                             }
                             
+                            $subconsulta = "SELECT CONCAT(NOM1_USU, ' ', NOM2_USU, ' ', APE1_USU, ' ', APE2_USU) AS NOMBRE_COMPLETO FROM usuario WHERE ID_USU = '$idUsuCam'";
+$resultado_subconsulta = mysqli_query($conexion, $subconsulta);
+$fila_subconsulta = mysqli_fetch_assoc($resultado_subconsulta);
+$nomCompl = $fila_subconsulta['NOMBRE_COMPLETO'];
                             ?>
 
 <!DOCTYPE html>
@@ -69,17 +68,69 @@ $subconsulta_proyecto = "SELECT NOM_PRO FROM proyectos WHERE ID_PRO = '$idProCam
     <title>Document</title>
 </head>
 <body>
+
    <h3 class="text-center"><?php echo $NOM_PRO ?> </h1>
+    
+   <div class="row g-0  p-3 clickable-row">
+    <div class="col">
+    <strong>Cédula del Solicitante: </strong> <?php echo $idUsuCam;?>
+    </div>
+    <div class="col-3">
+    <strong>Fecha: </strong> <?php echo $fecCam;?>
+</div>
+    </div>
+
+    <div class="row g-0  p-3 clickable-row">
+    <div class="col">
+    <strong>Nombres Completos: </strong> <?php echo $nomCompl;?>
+    </div>
+    
+    </div>
+
    <div class="row g-0  p-3 clickable-row">
     <div class="col-3">
     <strong>Prioridad: </strong>
     </div>
     <div class="col">
-    <div class="progress" role="progressbar" aria-label="Example 35px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 20px">
+    <div class="progress" role="progressbar" aria-label="Example 35px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
   <div class="progress-bar" style="width: <?php echo $porcenPri;?>"> <?php echo $prioridad;?> </div>
 </div>
     </div>
+
+    
+
    </div>
+
+   <div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <strong>Razon:</strong>
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+      <?php
+        echo $razCam; 
+        ?>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <strong>Descripción:</strong>
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <?php
+        echo $desCam; 
+        ?>
+      </div>
+    </div>
+  </div>
+</div>
    
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

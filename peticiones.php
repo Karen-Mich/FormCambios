@@ -160,10 +160,7 @@ $resultado = mysqli_query($conexion, $query);
       <div class="modal-body" id="respuestaModal">
 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-  
-      </div>
+      
     </div>
   </div>
 </div>
