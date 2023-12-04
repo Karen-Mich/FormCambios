@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/fontawesome-all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="./estilos/estilos.css">
+    <link rel="stylesheet" href="../css/estilos_historial.css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <title>Usuarios</title>
 </head>
@@ -19,7 +18,7 @@
 
 
 <div class="col-xs-12">
-  		<h1>Bienvenido al Historial de Peticiones <?php echo $_SESSION['nom_usu']; ?></h1>
+  		<h1>Bienvenido al Historial de Peticiones <?php echo $_SESSION['NOM1_USU']; ?></h1>
       <br>
       
 
@@ -36,7 +35,7 @@
 		<br>
 
   <?php
-$conexion=mysqli_connect("localhost","root","","formulario_cambios"); 
+$conexion=mysqli_connect("localhost","root","admin","formulario_cambios"); 
 $where="";
 
 if(isset($_GET['enviar'])){
@@ -90,15 +89,12 @@ if(isset($_GET['enviar'])){
 
 				<?php
 
-$conexion=mysqli_connect("localhost","root","","formulario_cambios");               
-$SQL="SELECT distinct u.nom_usu, u.cor_usu, p.nom_pro, c.fec_cam ,c.raz_cam,c.des_cam, c.est_cam
+$conexion=mysqli_connect("localhost","root","admin","formulario_cambios");               
+$SQL="SELECT distinct u.nom1_usu, u.cor_usu, p.nom_pro, c.fec_cam ,c.raz_cam,c.des_cam, c.est_cam
 FROM usuario as u , proyectos as p, cambios as c
 WHERE u.id_usu = c.id_usu_cam
 AND p.id_pro = c.id_pro_cam
-/*and u.id_usu = '$_SESSION[id_usu]'*/
-and u.id_usu = '2'
-
-
+and u.id_usu = '$_SESSION[id_usu]'
 $where";
 
 $dato = mysqli_query($conexion, $SQL);
@@ -108,7 +104,7 @@ if($dato -> num_rows >0){
     
 ?>
 <tr>
-<td><?php echo $fila['nom_usu']; ?></td>
+<td><?php echo $fila['nom1_usu']; ?></td>
 <td><?php echo $fila['cor_usu']; ?></td>
 <td><?php echo $fila['nom_pro']; ?></td>
 <td><?php echo $fila['fec_cam']; ?></td>

@@ -46,7 +46,7 @@
         if (enableHistorial()) { ?>
             <div class="item separator"></div>
             <div class="item">
-                <a href="">
+                <a href="../views/historial.php">
                     <div class="icon">
                         <i class="bi bi-clock-history" style="font-size: 1.5rem;"></i>
                     </div>
