@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Realizar la solicitud AJAX
             $.ajax({
                 type: "POST",
-                url: "tu_script_php.php",
+                url: "ModalInfo.php",
                 data: { idCam: idCam },
                 success: function(response) {
                     // Actualizar el contenido del modal con la respuesta

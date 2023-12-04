@@ -67,33 +67,33 @@ $nomCompl = $fila_subconsulta['NOMBRE_COMPLETO'];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Document</title>
 </head>
-<body>
+<body >
 
-   <h3 class="text-center"><?php echo $NOM_PRO ?> </h1>
+   <h3 class="text-center" ><i class='bx bx-box' ></i><?php echo $NOM_PRO ?> </h1>
     
    <div class="row g-0  p-3 clickable-row">
-    <div class="col">
+    <div class="col" style="font-size: large;">
     <strong>Cédula del Solicitante: </strong> <?php echo $idUsuCam;?>
     </div>
-    <div class="col-3">
+    <div class="col-3" style="font-size: large;">
     <strong>Fecha: </strong> <?php echo $fecCam;?>
 </div>
     </div>
 
-    <div class="row g-0  p-3 clickable-row">
+    <div class="row g-0  p-3 clickable-row" style="font-size: large;">
     <div class="col">
     <strong>Nombres Completos: </strong> <?php echo $nomCompl;?>
     </div>
     
     </div>
 
-   <div class="row g-0  p-3 clickable-row">
+   <div class="row g-0  p-3 clickable-row" style="font-size: large;">
     <div class="col-3">
     <strong>Prioridad: </strong>
     </div>
     <div class="col">
     <div class="progress" role="progressbar" aria-label="Example 35px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
-  <div class="progress-bar" style="width: <?php echo $porcenPri;?>"> <?php echo $prioridad;?> </div>
+  <div class="progress-bar" style="width: <?php echo $porcenPri;?>;, font-size: medium;"> <?php echo $prioridad;?> </div>
 </div>
     </div>
 
@@ -101,10 +101,10 @@ $nomCompl = $fila_subconsulta['NOMBRE_COMPLETO'];
 
    </div>
 
-   <div class="accordion" id="accordionExample">
+   <div class="accordion" id="accordionExample" style="font-size: large;">
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="font-size: large;">
         <strong>Razon:</strong>
       </button>
     </h2>
@@ -118,7 +118,7 @@ $nomCompl = $fila_subconsulta['NOMBRE_COMPLETO'];
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="font-size: large;">
         <strong>Descripción:</strong>
       </button>
     </h2>
