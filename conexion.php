@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";
 $password = "";
-$database = "formulario_cambios";
+$database = "formulario_de_cambios";
 
 $conexion = mysqli_connect($host, $user, $password, $database);
 if(!$conexion){

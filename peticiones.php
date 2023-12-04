@@ -1,28 +1,36 @@
 <?php
-$host = "localhost";
-$user = "root";
-$password = "";
-$database = "formulario_de_cambios";
-
-
-$conexion = mysqli_connect($host, $user, $password, $database);
-if(!$conexion){
-echo "No se realizo la conexion a la base de datos, el error fue:".
-mysqli_connect_error() ;
-}
+include "conexion.php";
 
 // Realizar la consulta a la base de datos
 $query = "SELECT * FROM cambios WHERE EST_CAM=1";
 $resultado = mysqli_query($conexion, $query);
 
+
+function actualizarEstado($conexion, $id_cam) {
+    $query_actualizacion = "UPDATE cambios SET EST_CAM = 2 WHERE ID_CAM = '$id_cam'";
+    $resultado_actualizacion = mysqli_query($conexion, $query_actualizacion);
+
+    if ($resultado_actualizacion) {
+        echo '<script>window.location.reload();</script>';
+    } else {
+        echo "Error en la actualización: " . mysqli_error($conexion);
+    }
+}
+
+if (isset($_POST['aceptar'])) {
+    $id_cam = $_POST['id_cam'];
+    actualizarEstado($conexion, $id_cam);
+}
+
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Document</title>
+    
 </head>
 <body>
 <div class="row g-0 text-center p-3">
@@ -77,6 +85,14 @@ $resultado = mysqli_query($conexion, $query);
     </div>
   </div>
 </div>
+<div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+</div>
 
 <?php
           // Iterar sobre los resultados de la consulta
@@ -89,7 +105,7 @@ $resultado = mysqli_query($conexion, $query);
       <div class="card-body">
         <div class="row">
           <div class="col">
-          <?php echo $fila['FEC_CAM'] ?>
+          <?php echo $fila['FEC_CAM'] ?> 
           </div>
           <div class="col">
           <?php
@@ -127,8 +143,13 @@ $resultado = mysqli_query($conexion, $query);
     ?>
           </div>
           <div class="col-2">
-          <button type="button" class="btn btn-success">Aceptar</button>
-        <button type="button" class="btn btn-danger">Rechazar</button>
+          <form action="AceptarCambio.php" method="post">
+                                <input type="hidden" name="id_cam" value="<?php echo $fila['ID_CAM']; ?>">
+                                <button type="submit" class="btn btn-success" name="aceptar">Aceptar</button>
+                                <button type="submit" class="btn btn-danger" name="rechazar">Rechazar</button>
+                            </form>
+                            
+        
           </div>
         </div>
       </div>
@@ -141,7 +162,25 @@ $resultado = mysqli_query($conexion, $query);
 
 
 
-
+<script>
+function aceptarCambio(id_cam) {
+    // Realizar una solicitud AJAX al servidor
+    $.ajax({
+        type: "POST",
+        url: "tu_script_php.php", // Reemplaza con el nombre de tu script PHP
+        data: { aceptar: true, id_cam: id_cam },
+        success: function(response) {
+            console.log(response); // Puedes imprimir la respuesta en la consola para depuración
+            // Actualizar la sección de la página que necesitas sin recargarla completamente
+            // Por ejemplo, si los cambios están dentro de un contenedor con el ID "cambios-container"
+            $("#cambios-container").load(location.href + " #cambios-container");
+        },
+        error: function(error) {
+            console.error("Error en la solicitud AJAX: ", error);
+        }
+    });
+}
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
