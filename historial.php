@@ -62,7 +62,7 @@ if(isset($_GET['enviar'])){
   <form class="d-flex">
       <h4 >Buscar</h4> <br>
       <input class="form-control me-2 light-table-filter" data-table="table_id" type="text" 
-      placeholder="Buscar con JS">
+      placeholder="">
       <hr>
       </form>
   </div>
@@ -80,8 +80,9 @@ if(isset($_GET['enviar'])){
                         <th>Nombre del proyecto que se realizo la solicitud</th>
                         <th>Fecha de solicitud</th>
                         <th>Razon del cambio</th>
-                        <th>Estado</th>
                         <th>Descripcion</th>
+                        <th>Estado</th>
+                       
          
                         </tr>
                         </thead>
@@ -90,7 +91,7 @@ if(isset($_GET['enviar'])){
 				<?php
 
 $conexion=mysqli_connect("localhost","root","","formulario_cambios");               
-$SQL="SELECT distinct u.nom_usu, u.cor_usu, p.nom_pro, c.fec_cam ,c.raz_cam, c.est_cam
+$SQL="SELECT distinct u.nom_usu, u.cor_usu, p.nom_pro, c.fec_cam ,c.raz_cam,c.des_cam, c.est_cam
 FROM usuario as u , proyectos as p, cambios as c
 WHERE u.id_usu = c.id_usu_cam
 AND p.id_pro = c.id_pro_cam
@@ -112,16 +113,14 @@ if($dato -> num_rows >0){
 <td><?php echo $fila['nom_pro']; ?></td>
 <td><?php echo $fila['fec_cam']; ?></td>
 <td><?php echo $fila['raz_cam']; ?></td>
+<td><?php echo $fila['des_cam']; ?></td>
 <td><?php if($fila['est_cam'] == 1){
     echo "Aprobado";
 }else{
     echo "Rechazado";
-} ?></td>
+}
+ ?></td>
 
-
-<td>
-<input type="button" value="Mas informacion">
-</td>
 </tr>
 
 
