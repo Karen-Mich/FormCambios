@@ -1,11 +1,8 @@
 <?php
 
-include("conexion.php");
-
 date_default_timezone_set('America/Guayaquil');
 
-$db = new DataBase();
-$con = $db->conectar();
+$con = mysqli_connect("localhost", "root", "", "formulario_de_cambios");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_proyecto = $_POST['id_proyecto'];
