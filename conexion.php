@@ -6,7 +6,7 @@ function conexionphp() {
     $server = 'localhost';
     $user = 'root';
     $pass = 'Mysql10*';
-    $db = 'formulario';
+    $db = 'formulario_de_cambios';
 
     
     $conectar = mysqli_connect($server, $user, $pass, $db) or die ("Error de la conexion");

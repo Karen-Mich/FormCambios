@@ -71,7 +71,7 @@ if (isset($_POST['registrar'])) {
     echo '<button onclick="cerrarError()">×</button>';
 
     if (empty($errors)) {
-        $consulta = "INSERT INTO usuario (ID_USU, NOM_USU, NOM2_USU, APE_USU, APE2_USU, COR_USU, DIR_USU, TEL_USU, CON_USU, EST_USU)
+        $consulta = "INSERT INTO usuario (ID_USU, NOM1_USU, NOM2_USU, APE1_USU, APE2_USU, COR_USU, DIR_USU, TEL_USU, CON_USU, EST_USU)
         VALUES ('$cedula','$nombre1', '$nombre2', '$apellido1', '$apellido2', '$correo', '$direccion', '$telefono', '$contrasena','1');";
         $resultado = mysqli_query($conex, $consulta);
 
