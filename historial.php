@@ -80,7 +80,7 @@ if(isset($_GET['enviar'])){
                         <th>Nombre del proyecto que se realizo la solicitud</th>
                         <th>Fecha de solicitud</th>
                         <th>Razon del cambio</th>
-                        <th>Descripcion</th>
+                        <th>Descripción</th>
                         <th>Estado</th>
                        
          
