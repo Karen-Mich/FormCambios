@@ -1,5 +1,6 @@
 <?php
-include "conexion.php";
+include "sidemenu.php";
+include "../includes/_db.php";
 
 // Realizar la consulta a la base de datos
 $query = "SELECT * FROM cambios WHERE EST_CAM=1";
@@ -15,10 +16,10 @@ $resultado = mysqli_query($conexion, $query);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="stylesheet" href="./peticiones.css">
+    <link rel="stylesheet" href="../css/peticiones.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>  
 </head>
-<body>
+<body >
 <div class="row g-0 text-center p-3 row2">
   <div class="col">
     <div class="card card2" style = "background-color: black; border: 0.5px solid white; color: white; font-size: large;">
@@ -98,7 +99,7 @@ $resultado = mysqli_query($conexion, $query);
     ?>
           </div>
           <div class="col-2">
-          <form action="AceptarCambio.php" method="post">
+          <form action="../includes/AceptarCambio.php" method="post">
                                 <input type="hidden" name="id_cam" value="<?php echo $fila['ID_CAM']; ?>">
                                 <button type="submit" class="btn btn-success" name="aceptar"><i class='bx bxs-user-check' ></i></button>
                                 <button type="submit" class="btn btn-danger" name="rechazar"><i class='bx bxs-user-x' ></i></button>
@@ -134,6 +135,8 @@ $resultado = mysqli_query($conexion, $query);
 </div>
 
 <script>
+
+  
 document.addEventListener("DOMContentLoaded", function() {
     var filasClickeables = document.querySelectorAll(".clickable-row");
 
@@ -145,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Realizar la solicitud AJAX
             $.ajax({
                 type: "POST", // Método HTTP de la solicitud
-                url: "ModalInfo.php", // Ruta al script PHP que manejará la solicitud
+                url: "../includes/ModalInfo.php", // Ruta al script PHP que manejará la solicitud
                 data: { idCam: idCam }, // Datos que se enviarán al servidor
                 success: function(response) {
                     // Manejar la respuesta del servidor (si es necesario)
@@ -170,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Realizar la solicitud AJAX
             $.ajax({
                 type: "POST",
-                url: "ModalInfo.php",
+                url: "../includes/ModalInfo.php",
                 data: { idCam: idCam },
                 success: function(response) {
                     // Actualizar el contenido del modal con la respuesta

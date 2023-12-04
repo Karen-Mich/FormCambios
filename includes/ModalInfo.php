@@ -2,7 +2,7 @@
 
 $idCam = isset($_POST['idCam']) ? $_POST['idCam'] : null;
 
-include "conexion.php";
+include "../includes/_db.php";
 
 // Consulta SQL para seleccionar todos los datos de la tabla cambios
 $query = "SELECT * FROM cambios WHERE ID_CAM = $idCam";

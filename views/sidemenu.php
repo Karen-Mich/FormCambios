@@ -63,7 +63,7 @@
         if (enablePeticiones()) { ?>
             <div class="item separator"></div>
             <div class="item">
-                <a href="">
+                <a href="peticiones.php">
                     <div class="icon">
                         <i class="bi bi-ui-checks" style="font-size: 1.5rem;"></i>
                     </div>

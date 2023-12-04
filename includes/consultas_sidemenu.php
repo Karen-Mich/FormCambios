@@ -1,7 +1,6 @@
 <?php
 session_start();
 $con = mysqli_connect("localhost", "root", "admin", "formulario_de_cambios");
-
 $usuario = $_SESSION['id_usuario'];
 
 function enableFormulario(): bool

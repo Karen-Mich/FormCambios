@@ -1,5 +1,5 @@
 <?php
-include "conexion.php";
+include "../includes/_db.php";
 if (isset($_POST['aceptar'])) {
     $id_cam = $_POST['id_cam'];
 
@@ -9,7 +9,7 @@ if (isset($_POST['aceptar'])) {
 
     if ($resultado_actualizacion) {
         // Refrescar la página actual usando JavaScript
-        header("Location: peticiones.php");
+        header("Location: ../views/peticiones.php");
         exit(); 
     } else {
         // Manejar el caso en que haya un error en la actualización
@@ -25,7 +25,7 @@ if (isset($_POST['rechazar'])) {
 
     if ($resultado_actualizacion) {
         // Refrescar la página actual usando JavaScript
-        header("Location: peticiones.php");
+        header("Location: ../views/peticiones.php");
         exit(); 
     } else {
         // Manejar el caso en que haya un error en la actualización
