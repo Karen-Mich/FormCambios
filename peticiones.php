@@ -56,7 +56,7 @@ $resultado = mysqli_query($conexion, $query);
               
               <div class="row g-0 text-center p-3 clickable-row" data-id-cam="<?php echo $fila['ID_CAM']; ?>">
   <div class="col">
-    <div class="card" style="font-size: medium;">
+    <div class="card card3" style="font-size: medium;">
       <div class="card-body">
         <div class="row">
           <div class="col" data-bs-toggle="modal" data-bs-target="#exampleModal" >
@@ -145,11 +145,11 @@ document.addEventListener("DOMContentLoaded", function() {
             // Realizar la solicitud AJAX
             $.ajax({
                 type: "POST", // Método HTTP de la solicitud
-                url: "tu_script_php.php", // Ruta al script PHP que manejará la solicitud
+                url: "ModalInfo.php", // Ruta al script PHP que manejará la solicitud
                 data: { idCam: idCam }, // Datos que se enviarán al servidor
                 success: function(response) {
                     // Manejar la respuesta del servidor (si es necesario)
-                    console.log("Respuesta del servidor:", response);
+                   0// console.log("Respuesta del servidor:", response);
                 },
                 error: function(error) {
                     console.error("Error en la solicitud AJAX:", error);

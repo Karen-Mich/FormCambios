@@ -27,7 +27,7 @@ if ($result->num_rows > 0) {
     echo "No se encontraron resultados.";
 }
 $porcenPri = null;
-if($priCam===1){
+if($priCam==1){
     $porcenPri="33%";
 }elseif ($priCam == 2) {
     $porcenPri="66%";
@@ -93,7 +93,7 @@ $nomCompl = $fila_subconsulta['NOMBRE_COMPLETO'];
     </div>
     <div class="col">
     <div class="progress" role="progressbar" aria-label="Example 35px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
-  <div class="progress-bar" style="width: <?php echo $porcenPri;?>;, font-size: medium;"> <?php echo $prioridad;?> </div>
+  <div class="progress-bar" style="width: <?php echo $porcenPri;?>;"> <?php echo $prioridad;?> </div>
 </div>
     </div>
 
