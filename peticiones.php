@@ -16,27 +16,30 @@ $resultado = mysqli_query($conexion, $query);
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="./peticiones.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>  
 </head>
 <body>
-<div class="row g-0 text-center p-3">
+<div class="row g-0 text-center p-3 row2">
   <div class="col">
-    <div class="card">
+    <div class="card card2" style = "background-color: black; border: 0.5px solid white; color: white; font-size: large;">
       <div class="card-body">
         <div class="row">
           <div class="col">
-            Fecha
+          <i class='bx bx-calendar' ></i>&nbsp;
+            <strong>Fecha</strong>
           </div>
           <div class="col">
-            Proyecto
+          <i class='bx bxs-archive'></i>
+            <strong>Proyecto</strong>
           </div>
-          <div class="col">
-            Solicitante
+          <div class="col"><i class='bx bxs-user-voice' ></i>
+            <strong>Solicitante</strong>
           </div>
-          <div class="col-2">
-            Prioridad
+          <div class="col-2"><i class='bx bxs-star' ></i>
+            <strong>Prioridad</strong>
           </div>
-          <div class="col-2">
-            Desición
+          <div class="col-2"><i class='bx bx-question-mark' ></i>
+            <strong>Desición</strong>
           </div>
         </div>
       </div>
@@ -44,41 +47,6 @@ $resultado = mysqli_query($conexion, $query);
   </div>
 </div>
 
-<div class="row g-0 text-center p-3">
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Fecha
-            <!-- Button trigger modal -->
-          </div>
-          <div class="col" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Proyecto
-          </div>
-          <div class="col" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Solicitante
-          </div>
-          <div class="col-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Prioridad
-          </div>
-          <div class="col-2">
-          <button type="button" class="btn btn-success">Aceptar</button>
-        <button type="button" class="btn btn-danger">Rechazar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
-  <div class="d-flex">
-    <div class="toast-body">
-      Hello, world! This is a toast message.
-    </div>
-    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-  </div>
-</div>
 
 <?php
           // Iterar sobre los resultados de la consulta
@@ -88,7 +56,7 @@ $resultado = mysqli_query($conexion, $query);
               
               <div class="row g-0 text-center p-3 clickable-row" data-id-cam="<?php echo $fila['ID_CAM']; ?>">
   <div class="col">
-    <div class="card">
+    <div class="card" style="font-size: medium;">
       <div class="card-body">
         <div class="row">
           <div class="col" data-bs-toggle="modal" data-bs-target="#exampleModal" >
@@ -132,8 +100,8 @@ $resultado = mysqli_query($conexion, $query);
           <div class="col-2">
           <form action="AceptarCambio.php" method="post">
                                 <input type="hidden" name="id_cam" value="<?php echo $fila['ID_CAM']; ?>">
-                                <button type="submit" class="btn btn-success" name="aceptar">Aceptar</button>
-                                <button type="submit" class="btn btn-danger" name="rechazar">Rechazar</button>
+                                <button type="submit" class="btn btn-success" name="aceptar"><i class='bx bxs-user-check' ></i></button>
+                                <button type="submit" class="btn btn-danger" name="rechazar"><i class='bx bxs-user-x' ></i></button>
                             </form>
                             
         
