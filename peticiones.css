@@ -1,0 +1,25 @@
+.modal-header {
+    background-color: rgb(47, 47, 54);
+}
+.btn-close {
+    background-color: white;
+    color: white;
+}
+.row2{
+    background-color: black;
+    
+
+}
+.card2 {
+    background-color: black;
+    border: 0.5px solid white;
+    color: white;
+    font-size: large;
+}
+.card3:hover {
+    border: 2px solid rgb(0, 0, 0);
+    font-size: large;
+    font-weight: bold;
+}
+
+
