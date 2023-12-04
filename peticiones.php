@@ -5,7 +5,7 @@ include "conexion.php";
 $query = "SELECT * FROM cambios WHERE EST_CAM=1";
 $resultado = mysqli_query($conexion, $query);
 
-$id_peticion;
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -153,11 +153,12 @@ $id_peticion;
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 800px;">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" data-bs-theme="dark">
+
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="respuestaModal">
-          
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
