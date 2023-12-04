@@ -20,7 +20,7 @@ if (isset($_POST['rechazar'])) {
     $id_cam = $_POST['id_cam'];
 
     // Realiza la actualización en la base de datos
-    $query_actualizacion = "UPDATE cambios SET EST_CAM = 3 WHERE ID_CAM = '$id_cam'";
+    $query_actualizacion = "UPDATE cambios SET EST_CAM = 2 WHERE ID_CAM = '$id_cam'";
     $resultado_actualizacion = mysqli_query($conexion, $query_actualizacion);
 
     if ($resultado_actualizacion) {

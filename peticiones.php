@@ -5,23 +5,7 @@ include "conexion.php";
 $query = "SELECT * FROM cambios WHERE EST_CAM=1";
 $resultado = mysqli_query($conexion, $query);
 
-
-function actualizarEstado($conexion, $id_cam) {
-    $query_actualizacion = "UPDATE cambios SET EST_CAM = 2 WHERE ID_CAM = '$id_cam'";
-    $resultado_actualizacion = mysqli_query($conexion, $query_actualizacion);
-
-    if ($resultado_actualizacion) {
-        echo '<script>window.location.reload();</script>';
-    } else {
-        echo "Error en la actualización: " . mysqli_error($conexion);
-    }
-}
-
-if (isset($_POST['aceptar'])) {
-    $id_cam = $_POST['id_cam'];
-    actualizarEstado($conexion, $id_cam);
-}
-
+$id_peticion;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,7 +14,7 @@ if (isset($_POST['aceptar'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Document</title>
-    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 <div class="row g-0 text-center p-3">
@@ -64,16 +48,17 @@ if (isset($_POST['aceptar'])) {
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <div class="col">
+          <div class="col" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Fecha
+            <!-- Button trigger modal -->
           </div>
-          <div class="col">
+          <div class="col" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Proyecto
           </div>
-          <div class="col">
+          <div class="col" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Solicitante
           </div>
-          <div class="col-2">
+          <div class="col-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Prioridad
           </div>
           <div class="col-2">
@@ -99,15 +84,15 @@ if (isset($_POST['aceptar'])) {
           while ($fila = mysqli_fetch_assoc($resultado)) {
               ?>
               <!-- Fila con datos de la base de datos -->
-              <div class="row g-0 text-center p-3">
+              <div class="row g-0 text-center p-3 clickable-row" data-id-cam="<?php echo $fila['ID_CAM']; ?>">
   <div class="col">
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <div class="col">
+          <div class="col" data-bs-toggle="modal" data-bs-target="#exampleModal" >
           <?php echo $fila['FEC_CAM'] ?> 
           </div>
-          <div class="col">
+          <div class="col" data-bs-toggle="modal" data-bs-target="#exampleModal">
           <?php
                             // Realizar una subconsulta para obtener el nombre del proyecto
                             $id_proyecto = $fila['ID_PRO_CAM'];
@@ -117,7 +102,7 @@ if (isset($_POST['aceptar'])) {
                             echo $fila_subconsulta_proyecto['NOM_PRO'];
                             ?>
           </div>
-          <div class="col">
+          <div class="col" data-bs-toggle="modal" data-bs-target="#exampleModal">
           <?php
                             // Realizar una subconsulta para obtener el nombre del usuario
                             $id_usuario = $fila['ID_USU_CAM'];
@@ -127,7 +112,7 @@ if (isset($_POST['aceptar'])) {
                             echo $fila_subconsulta['NOM1_USU'];
                             ?>
           </div>
-          <div class="col-2">
+          <div class="col-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
           <?php
     $prioridad = $fila['PRI_CAM'];
 
@@ -162,25 +147,82 @@ if (isset($_POST['aceptar'])) {
 
 
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="respuestaModal">
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-function aceptarCambio(id_cam) {
-    // Realizar una solicitud AJAX al servidor
-    $.ajax({
-        type: "POST",
-        url: "tu_script_php.php", // Reemplaza con el nombre de tu script PHP
-        data: { aceptar: true, id_cam: id_cam },
-        success: function(response) {
-            console.log(response); // Puedes imprimir la respuesta en la consola para depuración
-            // Actualizar la sección de la página que necesitas sin recargarla completamente
-            // Por ejemplo, si los cambios están dentro de un contenedor con el ID "cambios-container"
-            $("#cambios-container").load(location.href + " #cambios-container");
-        },
-        error: function(error) {
-            console.error("Error en la solicitud AJAX: ", error);
-        }
+document.addEventListener("DOMContentLoaded", function() {
+    var filasClickeables = document.querySelectorAll(".clickable-row");
+
+    filasClickeables.forEach(function(fila) {
+        fila.addEventListener("click", function() {
+            var idCam = parseInt(fila.getAttribute("data-id-cam"), 10);
+            console.log("Haz clic en una fila con ID_CAM: " + idCam);
+
+            // Realizar la solicitud AJAX
+            $.ajax({
+                type: "POST", // Método HTTP de la solicitud
+                url: "tu_script_php.php", // Ruta al script PHP que manejará la solicitud
+                data: { idCam: idCam }, // Datos que se enviarán al servidor
+                success: function(response) {
+                    // Manejar la respuesta del servidor (si es necesario)
+                    console.log("Respuesta del servidor:", response);
+                },
+                error: function(error) {
+                    console.error("Error en la solicitud AJAX:", error);
+                }
+            });
+        });
     });
-}
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    var filasClickeables = document.querySelectorAll(".clickable-row");
+
+    filasClickeables.forEach(function(fila) {
+        fila.addEventListener("click", function() {
+            var idCam = parseInt(fila.getAttribute("data-id-cam"), 10);
+            console.log("Haz clic en una fila con ID_CAM: " + idCam);
+
+            // Realizar la solicitud AJAX
+            $.ajax({
+                type: "POST",
+                url: "tu_script_php.php",
+                data: { idCam: idCam },
+                success: function(response) {
+                    // Actualizar el contenido del modal con la respuesta
+                    document.getElementById("respuestaModal").innerHTML = response;
+                    // Mostrar el modal
+                    $('#exampleModal').modal('show');
+                },
+                error: function(error) {
+                    console.error("Error en la solicitud AJAX:", error);
+                }
+            });
+        });
+    });
+});
 </script>
+
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
