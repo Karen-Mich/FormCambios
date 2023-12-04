@@ -2,7 +2,7 @@
 
 date_default_timezone_set('America/Guayaquil');
 
-$con = mysqli_connect("localhost", "root", "", "formulario_de_cambios");
+$con = mysqli_connect("localhost", "root", "admin", "formulario_de_cambios");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_proyecto = $_POST['id_proyecto'];
@@ -22,6 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $con->close();
 
 }
-    header("Location: formulario.php");
+    header("Location: ../views/formulario.php");
     exit();
 ?>

@@ -34,7 +34,7 @@
                                 <div class="registrar">
                                     <p>
                                         No tengo cuenta
-                                        <a href="#"> Registrarse</a>
+                                        <a href="../views/register.php"> Registrarse</a>
                                     </p>
                                 </div>
                             </div>

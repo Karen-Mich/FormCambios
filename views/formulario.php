@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="estilo_formulario.css">
+    <link rel="stylesheet" href="../css/estilo_formulario.css">
     <title>Formulario</title>
 </head>
 
@@ -17,7 +17,7 @@
 
             <h2>Enviar un Formulario</h2>
 
-            <form action="envio.php" method="post" id="formulario" style="display: none;">
+            <form action="../includes/envio.php" method="post" id="formulario" style="display: none;">
                 <input type="hidden" name="id_proyecto" id="id_proyecto">
                 <input type="hidden" name="id_usuario" value="<?php echo $usuario; ?>">
 
@@ -69,8 +69,6 @@
                     idProyectoInput.value = this.value;
                     formulario.style.display = this.value !== 'Selecciona un proyecto' ? 'block' : 'none';
                 });
-
-
 
                 document.getElementById('cancelar').addEventListener('click', function() {
                     var formulario = document.getElementById('formulario');

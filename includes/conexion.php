@@ -5,7 +5,7 @@
 function conexionphp() {
     $server = 'localhost';
     $user = 'root';
-    $pass = 'Mysql10*';
+    $pass = 'admin';
     $db = 'formulario_de_cambios';
 
     

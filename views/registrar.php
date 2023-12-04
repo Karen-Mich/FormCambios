@@ -1,5 +1,5 @@
 <?php
-include("conexion.php");
+include("../includes/conexion.php");
 
 $cedula = $nombre1 = $nombre2 = $apellido1 = $apellido2 = $correo = $telefono = $direccion = $contrasena = "";
 

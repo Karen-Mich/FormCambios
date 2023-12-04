@@ -1,5 +1,5 @@
-<?php include 'consultas_sidemenu.php'; ?>
-<link rel="stylesheet" href="./sidemenu.css">
+<?php include '../includes/consultas_sidemenu.php'; ?>
+<link rel="stylesheet" href="../css/sidemenu.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <div class="menu-collapsed" id="sidemenu">
@@ -16,7 +16,7 @@
 
     <div id="profile">
         <div id="photo">
-            <img src="logo.png">
+            <img src="../img/logo.png">
         </div>
         <div id="name">
             <span>SISTEMA DE <br>PETICIÓN <br> DE CAMBIOS</span>
@@ -78,7 +78,7 @@
 
         <div class="item separator"></div>
         <div class="item">
-            <a id="close" href="#" onclick="salida('closeSession')">
+            <a id="close" href="../includes/login.php" onclick="salida('closeSession')">
                 <div class="icon">
                     <i class="bi bi-box-arrow-left" style="font-size: 1.5rem;"></i>
                 </div>

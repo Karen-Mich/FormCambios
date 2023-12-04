@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,200&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="../css/estilos.css">
 </head>
 <body>
     <form class = "formulario" method="post"> 
@@ -62,7 +62,7 @@
 
 <input type="submit" value = "Registrar" name = 'registrar' class = "button">
 <p>Al registrarte, aceptas nuestras Condiciones de uso y Politica de privacidad.</p>
-<p>¿Ya tienes cuenta? <a class="link" href="?">Iniciar Sesion</a></p> 
+<p>¿Ya tienes cuenta? <a class="link" href="../includes/login.php">Iniciar Sesion</a></p> 
     </div>
     </form>
     <?php
