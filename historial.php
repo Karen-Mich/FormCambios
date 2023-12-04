@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/fontawesome-all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="./estilos/estilos.css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <title>Usuarios</title>
 </head>
@@ -20,8 +21,7 @@
 <div class="col-xs-12">
   		<h1>Bienvenido al Historial de Peticiones <?php echo $_SESSION['nom_usu']; ?></h1>
       <br>
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create">
-				<span class="glyphicon glyphicon-plus"></span> Nuevo usuario   <i class="fa fa-plus"></i> </a></button>
+      
 
       <a class="btn btn-warning" href="../includes/_sesion/cerrarSesion.php">Log Out
       <i class="fa fa-power-off" aria-hidden="true"></i>
@@ -79,9 +79,9 @@ if(isset($_GET['enviar'])){
                         <th>Correo del solicitante</th>
                         <th>Nombre del proyecto que se realizo la solicitud</th>
                         <th>Fecha de solicitud</th>
-                        <th>razon del cambio</th>
-                        
-                       
+                        <th>Razon del cambio</th>
+                        <th>Estado</th>
+                        <th>Descripcion</th>
          
                         </tr>
                         </thead>
@@ -90,7 +90,7 @@ if(isset($_GET['enviar'])){
 				<?php
 
 $conexion=mysqli_connect("localhost","root","","formulario_cambios");               
-$SQL="SELECT distinct u.nom_usu, u.cor_usu, p.nom_pro, c.fec_cam ,c.raz_cam
+$SQL="SELECT distinct u.nom_usu, u.cor_usu, p.nom_pro, c.fec_cam ,c.raz_cam, c.est_cam
 FROM usuario as u , proyectos as p, cambios as c
 WHERE u.id_usu = c.id_usu_cam
 AND p.id_pro = c.id_pro_cam
@@ -112,10 +112,15 @@ if($dato -> num_rows >0){
 <td><?php echo $fila['nom_pro']; ?></td>
 <td><?php echo $fila['fec_cam']; ?></td>
 <td><?php echo $fila['raz_cam']; ?></td>
+<td><?php if($fila['est_cam'] == 1){
+    echo "Aprobado";
+}else{
+    echo "Rechazado";
+} ?></td>
+
 
 <td>
 <input type="button" value="Mas informacion">
-<input type="button" value="Editar">
 </td>
 </tr>
 
@@ -139,5 +144,6 @@ if($dato -> num_rows >0){
 
 	</body>
   </table>
+  <script src= "./js/buscador.js"></script>
 
 </html>

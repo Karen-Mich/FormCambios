@@ -1,0 +1,79 @@
+/* estilos.css */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+    color: whitesmoke;
+    background-image: url(../images/bg.png);
+}
+
+h4{
+    margin-right: 20px;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.btn-success,
+.btn-warning {
+    margin-bottom: 10px;
+}
+
+.table_id {
+    margin-top: 20px;
+}
+
+.table_id thead {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.table_id th,
+.table_id td {
+    border: 1px solid #dee2e6;
+}
+
+.table_id th {
+    font-weight: bold;
+}
+
+.btn-success,
+.btn-warning {
+    margin-bottom: 10px;
+}
+
+.d-flex {
+    margin-bottom: 20px;
+}
+
+.modal-content {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}
+
+.modal-header {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.modal-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+.btn-warning {
+    color: #fff;
+}
+
+h1 {
+    color: black;
+}
+
+.d-flex {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    margin-right: 10px;
+}
