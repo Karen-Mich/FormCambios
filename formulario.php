@@ -38,8 +38,6 @@
             <select class="form-select" id="proyectos" name="proyecto" required>
                 <option selected>Selecciona un proyecto</option>
                 <?php
-                $db = new DataBase();
-                $con = $db->conectar();
                 $usuario = $_SESSION['id'];
                 $sql = $con->query("SELECT * FROM proyectos WHERE ID_PRO IN (SELECT ID_PRO_DET FROM PROYECTOS_DETALLE WHERE ID_USU_DET = $usuario) AND EST_PRO = 1");
                 if ($sql) {

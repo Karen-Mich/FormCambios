@@ -1,11 +1,10 @@
 <?php
 
-include 'conexion.php';
+$con = mysqli_connect("localhost", "root", "", "formulario_de_cambio");
 
 function enableFormulario(): bool
 {
-    $db = new DataBase();
-    $con = $db->conectar();
+    global $con;
 
     $usuario = $_SESSION['id'];
     
@@ -22,8 +21,7 @@ function enableFormulario(): bool
 
 function enableHistorial(): bool
 {
-    $db = new DataBase();
-    $con = $db->conectar();
+    global $con;
 
     $usuario = $_SESSION['id'];
 
@@ -40,8 +38,7 @@ function enableHistorial(): bool
 
 function enablePeticiones(): bool
 {
-    $db = new DataBase();
-    $con = $db->conectar();
+    global $con;
 
     $usuario = $_SESSION['id'];
 
@@ -58,6 +55,5 @@ function enablePeticiones(): bool
 
 function closeSession()
 {
-    session_start();
     session_destroy();
 }
