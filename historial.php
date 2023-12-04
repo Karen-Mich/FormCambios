@@ -115,8 +115,10 @@ if($dato -> num_rows >0){
 <td><?php echo $fila['raz_cam']; ?></td>
 <td><?php echo $fila['des_cam']; ?></td>
 <td><?php if($fila['est_cam'] == 1){
-    echo "Aprobado";
-}else{
+    echo "Pendiente";
+}else if($fila['est_cam'] == 2){
+    echo "Aceptado";
+}else if($fila['est_cam'] == 3){
     echo "Rechazado";
 }
  ?></td>
